@@ -1,0 +1,21 @@
+.profile__info {
+  box-sizing: content-box;
+  max-width: 336px;
+  display: flex;
+  flex-direction: row;
+  padding: 22px 0 22px 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+  text-overflow: hidden;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1200px) {
+  .profile__info {
+    justify-content: space-between;
+    max-width: 282px;
+    padding: 0;
+    margin-bottom: 36px;
+  }
+}
