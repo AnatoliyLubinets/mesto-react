@@ -14,7 +14,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setisConfirmPopupOpen]  = React.useState(false);
-  const [selectedCard, setSelectedCard ] = React.useState({});
+  const [selectedCard, setSelectedCard ] = React.useState(null);
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen("popup_opened");
@@ -41,7 +41,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setisConfirmPopupOpen(false);
-    setSelectedCard({});
+    setSelectedCard(null);
   };
 
   return (
@@ -69,10 +69,13 @@ function App() {
         onClose={closeAllPopups}
       />
 
-      <ImagePopup
-        card={selectedCard}
-        onClose={closeAllPopups}
-      />
+      {selectedCard !== null &&
+        <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}
+        />
+      }
+
 
       <ConfirmationPopup
        isOpen={isConfirmPopupOpen}
@@ -80,19 +83,7 @@ function App() {
       />
 
       <Footer/>
-      <template id="elements-template">
-        <div className="elements__item">
-          <button className="elements__delete" type="button" aria-label="Удалить" id="delete"></button>
-          <img className="elements__photo"/>
-          <div className="elements__group">
-            <h2 className="elements__name"></h2>
-            <div className="elements__like-group">
-              <button className="elements__heart" type="button" aria-label="Нравится"></button>
-              <span id="number" className="elements__number-of-like">0</span>
-            </div>
-          </div>
-        </div>
-      </template>
+
     </div>
   );
 }

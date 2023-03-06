@@ -1,23 +1,37 @@
 import React from "react";
-import Api from "../utils/Api";
+import api from "../utils/api";
 import Card from "./Card";
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onConfirm, onCardClick}) {
-  const [profileAvatar, setProfileAvatar] = React.useState(false);
-  const [profileName, setProfileName] = React.useState(false);
-  const [profileAbout, setProfileAbout] = React.useState(false);
+  const [userAvatar, setUserAvatar] = React.useState('');
+  const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] = React.useState('');
   const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    Promise.all([api.getInitialCards(), api.getProfileInfo()])
+        .then(([cards, user]) => {
+          setUserName(user.name);
+          setUserDescription(user.about);
+          setUserAvatar(user.avatar);
+          setCards(cards);
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+  });
 
   return (
     <main className="content">
       <section className="profile">
         <button className="profile__avatar-button" onClick={onEditAvatar}>
-          <img className="profile__avatar" alt="Аватарка" src={`${profileAvatar}`}/>
+          <div className="profile__avatar" style={{ backgroundImage: `url(${userAvatar})` }}>
+          </div>
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">{profileName}</h1>
+          <h1 className="profile__name">{userName}</h1>
           <button className="profile__edit-button" type="button" aria-label="Редактировать" onClick={onEditProfile}></button>
-          <p className="profile__about-me">{profileAbout}</p>
+          <p className="profile__about-me">{userDescription}</p>
         </div>
         <button className="profile__add-button" type="button" aria-label="Добавить" onClick={onAddPlace}></button>
       </section>
@@ -26,14 +40,12 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onConfirm, onCardClick})
         {cards.map((card) => {
           return (
             <Card
-            card={card}
-            link={card.link}
-            name={card.name}
             key={card._id}
+            card={card}
             onCardClick={onCardClick}
             />
           );
-        })};
+        })}
       </section>
 
     </main>

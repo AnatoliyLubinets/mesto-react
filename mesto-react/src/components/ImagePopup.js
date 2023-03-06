@@ -1,4 +1,5 @@
 import React from "react";
+import card from "./Card";
 
 function ImagePopup({ card, onClose }) {
   return (
