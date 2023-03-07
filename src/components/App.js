@@ -14,22 +14,22 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isConfirmPopupOpen, setisConfirmPopupOpen]  = React.useState(false);
-  const [selectedCard, setSelectedCard ] = React.useState(null);
+  const [selectedCard, setSelectedCard ] = React.useState({});
 
   const handleEditProfileClick = () => {
-    setIsEditProfilePopupOpen("popup_opened");
+    setIsEditProfilePopupOpen(true);
   };
 
   const handleAddPlaceClick = () => {
-    setIsAddPlacePopupOpen("popup_opened");
+    setIsAddPlacePopupOpen(true);
   };
 
   const handleEditAvatarClick = () => {
-    setIsEditAvatarPopupOpen("popup_opened");
+    setIsEditAvatarPopupOpen(true);
   };
 
   const handleConfirmClick = () => {
-    setisConfirmPopupOpen("popup_opened");
+    setisConfirmPopupOpen(true);
   };
 
   const handleCardClick = (card) => {
@@ -41,7 +41,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setisConfirmPopupOpen(false);
-    setSelectedCard(null);
+    setSelectedCard({});
   };
 
   return (
@@ -69,12 +69,12 @@ function App() {
         onClose={closeAllPopups}
       />
 
-      {selectedCard !== null &&
-        <ImagePopup
-          card={selectedCard}
-          onClose={closeAllPopups}
-        />
-      }
+
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
+
 
 
       <ConfirmationPopup

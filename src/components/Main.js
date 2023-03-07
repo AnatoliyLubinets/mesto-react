@@ -19,7 +19,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onConfirm, onCardClick})
         .catch((error) => {
           console.log(error)
         });
-  });
+  }, []);
 
   return (
     <main className="content">
