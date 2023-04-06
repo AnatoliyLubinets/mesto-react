@@ -1,20 +1,26 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm"
 
-function AddPopup({props, isOpen, onClose }) {
+
+
+function AddPopup({isOpen, onClose, onAddPlace }) {
+
+  const [name, setName] = React.useState(" ");
+	const [link, setLink] = React.useState(" ");
+
   function handleSubmit(e) {
 		e.preventDefault();
-		props.onAddPlace({
+		onAddPlace({name, link
 		});
 	}
   return (
     <PopupWithForm isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} name='add-popup' title='Новое местор' text='Сохранить'>
 
     <input className="popup__input add-popup__input add-popup__input_description_name" type="text"
-      placeholder="Название" id="card" name="name" minLength="2" maxLength="30" required/>
+      placeholder="Название" id="card" name="name" minLength="2" maxLength="30" onChange={e => setName(e.target.value)}required/>
     <span id="card-error" className="error"></span>
     <input className="popup__input add-popup__input add-popup__input_description_link" type="url"
-      placeholder="Ссылка на картинку" name="link" id="link" required/>
+      placeholder="Ссылка на картинку" name="link" id="link" onChange={e => setLink(e.target.value)} required/>
     <span id="link-error" className="error"></span>
 
   </PopupWithForm>

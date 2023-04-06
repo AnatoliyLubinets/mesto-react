@@ -34,7 +34,7 @@ class Api {
       method: "PATCH",
       body: JSON.stringify({
         name: values.name,
-        about: values.info
+        about: values.about
       })
     })
   }
@@ -78,7 +78,7 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: user.link
+        avatar: user.avatar
       })
     })
   }

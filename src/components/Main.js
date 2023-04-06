@@ -3,7 +3,7 @@ import api from "../utils/api";
 import Card from "./Card";
 import { userContext } from "../contexts/CurrentUserContext";
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, handleCardLike, handleCardDelete, cards}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards}) {
   const currentUser = React.useContext(userContext);
 
   return (
@@ -28,8 +28,8 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, handleCardL
             key={card._id}
             card={card}
             onCardClick={onCardClick}
-					  onCardLike={handleCardLike}
-					  onCardDelete={handleCardDelete}
+					  onCardLike={onCardLike}
+					  onCardDelete={onCardDelete}
             />
           );
         })}

@@ -2,7 +2,7 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm"
 import { userContext } from "../contexts/CurrentUserContext";
 
-function ProfilePopup({props, isOpen, onClose }) {
+function ProfilePopup({onUpdateUser, isOpen, onClose }) {
   const currentUser = React.useContext(userContext);
 
   const [name, setName] = React.useState(" ");
@@ -15,7 +15,7 @@ function ProfilePopup({props, isOpen, onClose }) {
 
   function handleSubmit(e) {
 		e.preventDefault();
-		props.onUpdateUser({
+		onUpdateUser({
 			name,
 			about: description,
 		});
@@ -25,10 +25,10 @@ function ProfilePopup({props, isOpen, onClose }) {
     <PopupWithForm isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} name='profile-popup' title='Редактировать профиль' text='Сохранить'>
 
       <input className="popup__input popup__input_description_name" type="text"
-        placeholder="Моё имя"  name="name" id="name" minLength="2" maxLength="40" required/>
+        placeholder="Моё имя"  name="name" id="name" minLength="2" maxLength="40" onChange={e => setName(e.target.value)} required/>
       <span id="name-error" className="error"></span>
       <input className="popup__input popup__input_description_about-me" type="text"
-        placeholder="Обо мне"  name="info" id="about-me" minLength="2" maxLength="200" required/>
+        placeholder="Обо мне"  name="info" id="about-me" minLength="2" maxLength="200" onChange={e => setDescription(e.target.value)}required/>
       <span id="about-me-error" className="error"></span>
 
     </PopupWithForm>

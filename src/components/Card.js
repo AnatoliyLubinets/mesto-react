@@ -5,13 +5,10 @@ function Card(props) {
   const currentUser = React.useContext(userContext);
 
   const isOwn = props.card.owner._id === currentUser._id;
-
 	const cardDeleteButtonClassName = `elements__delete ${
 		isOwn ? "elements__delete" : document.querySelector("elements__delete")
 	}`;
-
 	const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
-
   const cardLikeButtonClassName = (
     `elements__heart ${isLiked && 'elements__heart_active'}`
   );;
@@ -22,6 +19,7 @@ function Card(props) {
 
   function handleLikeClick() {
 		props.onCardLike(props.card, isLiked);
+
 	}
 
 	function handleDeleteClick() {
@@ -30,7 +28,8 @@ function Card(props) {
 
   return (
     <div className="elements__item">
-      <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} type="button" aria-label="Удалить" id="delete"></button>
+      {/* <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} type="button" aria-label="Удалить" id="delete"></button> */}
+      {isOwn && <button className='elements__delete' onClick={handleDeleteClick} />}
       <img className="elements__photo" src={props.card.link} alt={props.card.name} onClick={handleCardClick}/>
       <div className="elements__group">
         <h2 className="elements__name">{props.card.name}</h2>
