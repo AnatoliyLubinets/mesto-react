@@ -3,7 +3,7 @@ import card from "./Card";
 
 function ImagePopup({ card, onClose }) {
   return (
-    <section className={`popup image-popup ${card.link ? "popup_opened" : ''}`}>
+    <section className={`popup image-popup ${card.link ? "popup_opened" : ""}`}>
       <div className="image-popup__container">
         <button className="popup__close-button" onClick={onClose}></button>
         <img className="image-popup__img" src={card.link} alt={card.name} />
@@ -11,6 +11,6 @@ function ImagePopup({ card, onClose }) {
       </div>
     </section>
   );
-};
+}
 
 export default ImagePopup;

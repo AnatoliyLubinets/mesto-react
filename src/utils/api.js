@@ -73,6 +73,14 @@ class Api {
     })
   }
 
+  toggleLike = (cardId, isLiked) => {
+		return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+			method: `${isLiked ? "DELETE" : "PUT"}`,
+			headers: this._headers,
+			body: JSON.stringify(),
+		});
+	}
+
   handleChangeAvatar = (user) => {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
