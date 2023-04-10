@@ -18,10 +18,10 @@ function Main({
     <main className="content">
       <section className="profile">
         <button className="profile__avatar-button" onClick={onEditAvatar}>
-          <div
+          <img
             className="profile__avatar"
-            style={{ backgroundImage: `url(${currentUser.avatar})` }}
-          ></div>
+            src={currentUser.avatar}
+          ></img>
         </button>
         <div className="profile__info">
           <h1 className="profile__name">{currentUser.name}</h1>
